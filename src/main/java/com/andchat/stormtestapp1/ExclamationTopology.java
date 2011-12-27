@@ -18,11 +18,11 @@ public class ExclamationTopology {
     public static void main(String[] args) throws Exception {
         TopologyBuilder builder = new TopologyBuilder();
         
-        builder.setSpout(1, new TestWordSpout(), 10);        
-        builder.setBolt(2, new ExclamationBolt(), 3)
-                .shuffleGrouping(1);
-        builder.setBolt(3, new ExclamationBolt(), 2)
-                .shuffleGrouping(2);
+        builder.setSpout("1", new TestWordSpout(), 10);
+        builder.setBolt("2", new ExclamationBolt(), 3)
+                .shuffleGrouping("1");
+        builder.setBolt("3", new ExclamationBolt(), 2)
+                .shuffleGrouping("2");
         
         // Create a local cluster
         Config conf = new Config();
